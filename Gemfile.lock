@@ -46,6 +46,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.0.3.0)
+  coffee-script
   haml
   sinatra
   sinatra-asset-pipeline
