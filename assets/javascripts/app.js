@@ -5,7 +5,7 @@
 //= require_tree ./views
 //= require_tree ./models
 
-app = new App.Views.Page()
+app = new App.Views.Page({el: $("#container")})
 app.render()
 
 
