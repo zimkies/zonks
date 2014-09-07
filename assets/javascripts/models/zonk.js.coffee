@@ -1,1 +1,1 @@
-class Zonk extends Backbone.Model
+class App.Models.Zonk extends Backbone.Model
