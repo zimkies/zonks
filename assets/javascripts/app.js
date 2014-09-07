@@ -1,10 +1,11 @@
-//= require namespace
 //= require_tree ./vendor
-//= require_tree ./views
-//= require ./views/app_view
+
+//= require namespace
+//= require_tree ./templates
 //= require_tree ./views
 //= require_tree ./models
 
-new App.Views.Page
+app = new App.Views.Page()
+app.render()
 
 
