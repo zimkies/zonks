@@ -43,7 +43,7 @@ class App.Views.Page extends Backbone.View
       },
       {
         name: 'Dieter Rams Stick Figure'
-        image: 'None.png'
+        image: 'assets/stick_figure.png'
         description: "Less, but better"
       },
       {
