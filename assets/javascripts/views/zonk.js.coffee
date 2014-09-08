@@ -1,6 +1,6 @@
 class App.Views.Zonk extends Backbone.View
 
-  className: 'zonk col-sm-3'
+  className: 'zonk col-sm-3 col-xs-6'
 
   template: JST['templates/zonk']
 
