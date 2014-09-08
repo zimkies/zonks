@@ -12,8 +12,53 @@ class App.Views.Page extends Backbone.View
 
   locallyStoredZonks: [
       {
-        name: 'superhuman'
-        image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTcEZAxkT6ze2NwfrzEsVyynPKIPnjzAp0no_qTulZdT9VwQ-7Tt6fpcQ'
-        description: "This is the superhuman zonk"
-      }
+        name: 'Ninja Turtle'
+        image: 'assets/ninja_turtles.png'
+        description: "Better Together"
+      },
+      {
+        name: "Cap'n Crunch"
+        image: 'assets/captain_crunch.png'
+        description: "Make it actually happen"
+      },
+      {
+        name: "Sorcerer's Apprentice"
+        image: 'assets/mickey_mouse.png'
+        description: "10x"
+      },
+      {
+        name: 'J.Lo'
+        image: 'assets/jlo.png'
+        description: "Be Real"
+      },
+      {
+        name: 'Neil Armstrong'
+        image: 'assets/neil_armstrong.png'
+        description: "Put a dent in the universe"
+      },
+      {
+        name: 'Sherlock Holmes'
+        image: 'assets/sherlock_holmes.png'
+        description: "Ask why"
+      },
+      {
+        name: 'Dieter Rams Stick Figure'
+        image: 'None.png'
+        description: "Less, but better"
+      },
+      {
+        name: 'Jimmy Fallon'
+        image: 'assets/jimmy_fallon.png'
+        description: "Fun is contagious"
+      },
+      {
+        name: 'Wile E. Coyote'
+        image: 'assets/coyote.png'
+        description: "Everything is a prototype"
+      },
+      {
+        name: 'Katniss Everdeen'
+        image: 'assets/katniss.png'
+        description: "Act with courage"
+      },
     ]
