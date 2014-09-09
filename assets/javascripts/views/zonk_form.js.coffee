@@ -4,6 +4,9 @@ class App.Views.ZonkForm extends Backbone.View
 
   template: JST['templates/zonk_form']
 
+  events:
+    'submit form': 'onSubmit'
+
   initialize: ->
     @model = @zonkAward = new App.Models.ZonkAward
     @zonks = @collection
@@ -20,5 +23,5 @@ class App.Views.ZonkForm extends Backbone.View
     zonk: @$("input.zonk").val()
     description: @$("input.description").val()
 
-  submit: ->
+  onSubmit: ->
     @zonkAward.save(@serializeData())

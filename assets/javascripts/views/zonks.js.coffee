@@ -1,18 +1,11 @@
-class App.Views.Page extends Backbone.View
-
-  template: JST['templates/page']
+class App.Views.Zonks extends Backbone.View
 
   initialize: ->
     @collection = @zonks = new App.Collections.Zonks(@locallyStoredZonks)
 
   render: ->
-    @$el.html @template({b: 4})
-
-    @zonks.map (zonk) ->
-      @$('#zonks').append new App.Views.Zonk(model: zonk).render().$el
-
-    zonkForm = new App.Views.ZonkForm(el: @$("#zonk_award_form"), collection: @zonks)
-    zonkForm.render()
+    @zonks.map (zonk) =>
+      @$el.append new App.Views.Zonk(model: zonk).render().$el
 
   locallyStoredZonks: [
       {
