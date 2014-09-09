@@ -19,9 +19,10 @@ class App.Views.ZonkForm extends Backbone.View
     @
 
   serializeData: ->
-    name: @$("input.name").val()
-    zonk: @$("input.zonk").val()
-    description: @$("input.description").val()
+    name: @$("input[name='name']").val()
+    zonk: @$("select[name='zonk']").val()
+    deed: @$("textarea[name='deed']").val()
 
-  onSubmit: ->
+  onSubmit: (e) =>
+    e.preventDefault?()
     @zonkAward.save(@serializeData())
