@@ -7,8 +7,12 @@ class App.Views.Page extends Backbone.View
 
   render: ->
     @$el.html @template({b: 4})
+
     @zonks.map (zonk) ->
       @$('#zonks').append new App.Views.Zonk(model: zonk).render().$el
+
+    zonkForm = new App.Views.ZonkForm(el: @$("#zonk_award_form"), collection: @zonks)
+    zonkForm.render()
 
   locallyStoredZonks: [
       {

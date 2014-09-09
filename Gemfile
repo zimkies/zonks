@@ -7,4 +7,5 @@ gem 'haml'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'coffee-script'
 gem 'ejs'
+gem 'mongo'
 

@@ -3,6 +3,7 @@ GEM
   specs:
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
+    bson (1.10.2)
     coffee-script (2.3.0)
       coffee-script-source
       execjs
@@ -12,6 +13,8 @@ GEM
     haml (4.0.5)
       tilt
     hike (1.2.3)
+    mongo (1.10.2)
+      bson (= 1.10.2)
     multi_json (1.10.1)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -50,5 +53,6 @@ DEPENDENCIES
   coffee-script
   ejs
   haml
+  mongo
   sinatra
   sinatra-asset-pipeline
