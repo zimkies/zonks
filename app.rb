@@ -5,10 +5,6 @@ require 'sinatra/asset_pipeline'
 class App < Sinatra::Base
   register Sinatra::AssetPipeline
 
-  get '/' do
-    haml :index
-  end
-
   get '/api/v1/awards' do
     awards.find.to_a.map { |a| from_bson_id(a) }.to_json
   end
@@ -16,6 +12,10 @@ class App < Sinatra::Base
   post '/api/v1/awards/' do
     award_oid = awards.insert(JSON.parse(request.body.read.to_s))
     "{\"id\": \"#{award_oid.to_s}\"}"
+  end
+
+  get '/zonks*' do
+    haml :index
   end
 
   def awards
