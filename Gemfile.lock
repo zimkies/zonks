@@ -4,6 +4,8 @@ GEM
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     bson (1.10.2)
+    bson_ext (1.10.2)
+      bson (~> 1.10.2)
     coffee-script (2.3.0)
       coffee-script-source
       execjs
@@ -51,6 +53,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.0.3.0)
   bson
+  bson_ext
   coffee-script
   ejs
   haml

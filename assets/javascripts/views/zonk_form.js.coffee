@@ -25,4 +25,11 @@ class App.Views.ZonkForm extends Backbone.View
 
   onSubmit: (e) =>
     e.preventDefault?()
-    @zonkAward.save(@serializeData())
+    @zonkAward.save(@serializeData()).fail(@onSubmitFail)
+
+  onSubmitFail: (xhr) =>
+    if xhr.status == '401'
+      alert "Only Nataleigh can add zonks. Email zonks@joingrouper.com if you want to zonk someone"
+    else
+      alert "Something went wrong. Sorry!"
+

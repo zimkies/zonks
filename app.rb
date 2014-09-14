@@ -5,11 +5,25 @@ require 'sinatra/asset_pipeline'
 class App < Sinatra::Base
   register Sinatra::AssetPipeline
 
+  helpers do
+    def protected!
+      return if authorized?
+      headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+      halt 401, "Not authorized\n"
+    end
+
+    def authorized?
+      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['nat', 'zonks']
+    end
+  end
+
   get '/api/v1/awards' do
     awards.find.to_a.map { |a| from_bson_id(a) }.to_json
   end
 
   post '/api/v1/awards/' do
+    protected!
     award_oid = awards.insert(JSON.parse(request.body.read.to_s))
     "{\"id\": \"#{award_oid.to_s}\"}"
   end
@@ -40,7 +54,7 @@ class App < Sinatra::Base
       db.authenticate(uri.user, uri.password)
       db
     else
-      Mongo::Connection.new 'mongo-zonks'
+      Mongo::Connection.new.db 'mongo-zonks'
     end
   end
 end
