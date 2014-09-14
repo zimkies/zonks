@@ -50,6 +50,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.0.3.0)
+  bson
   coffee-script
   ejs
   haml

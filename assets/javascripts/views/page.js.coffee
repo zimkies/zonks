@@ -3,7 +3,9 @@ class App.Views.Page extends Backbone.View
   template: JST['templates/page']
 
   initialize: ->
-    @zonkAwards = new App.Collections.ZonkAwards([{name: "dummy", zonk: 'Zonk', deed: "ljlkjlkj"}])
+    @zonkAwards = new App.Collections.ZonkAwards
+    @zonkAwards.fetch(success: @onZonksFetched)
+    @listenTo @zonkAwards, 'sync', @onZonksFetched
 
   render: ->
     @$el.html @template()
@@ -26,4 +28,7 @@ class App.Views.Page extends Backbone.View
 
   onZonkSaved: (model) =>
     @zonkAwards.add model
+    @render()
+
+  onZonksFetched: (collection) =>
     @render()
