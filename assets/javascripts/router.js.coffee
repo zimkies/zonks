@@ -1,5 +1,9 @@
 class App.Router extends Backbone.Router
 
+  initialize: ->
+    App.zonks = new App.Collections.Zonks
+    App.zonks.localFetch()
+
   routes:
     "": "zonks"
     "awards": "awards"
