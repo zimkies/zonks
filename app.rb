@@ -32,6 +32,15 @@ class App < Sinatra::Base
   end
 
   def db
-    @db ||= ::Mongo::Connection.new.db("mongo-zonks")
+    return @db if @db
+    @db = if ENV['MONGOLAB_URI']
+      uri = URI.parse(ENV['MONGOLAB_URI'])
+      name = uri.path.gsub(/^\//, '')
+      db = Mongo::Connection.new(uri.host, uri.port).db(name)
+      db.authenticate(uri.user, uri.password)
+      db
+    else
+      Mongo::Connection.new 'mongo-zonks'
+    end
   end
 end
