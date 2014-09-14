@@ -1,6 +1,6 @@
-class App.Views.Page extends Backbone.View
+class App.Views.AwardsPage extends Backbone.View
 
-  template: JST['templates/page']
+  template: JST['templates/awards_page']
 
   initialize: ->
     @zonkAwards = new App.Collections.ZonkAwards
@@ -10,17 +10,15 @@ class App.Views.Page extends Backbone.View
   render: ->
     @$el.html @template()
 
-    @zonksView = new App.Views.Zonks(el: @$("#zonks"))
     @zonkFormView = new App.Views.ZonkForm(
       el: @$("#zonk_award_form"),
-      collection: @zonksView.collection
+      collection: App.zonks
     )
     @zonkAwardsView =  new App.Views.ZonkAwards(
       el: @$("#zonk_awards")
       collection: @zonkAwards
     )
 
-    @zonksView.render()
     @zonkFormView.render()
     @zonkAwardsView.render()
 
