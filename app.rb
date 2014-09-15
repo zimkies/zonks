@@ -19,12 +19,14 @@ class App < Sinatra::Base
   end
 
   get '/api/v1/awards' do
-    awards.find.to_a.map { |a| from_bson_id(a) }.to_json
+    awards.find.sort(created_at: -1).to_a.map { |a| from_bson_id(a) }.to_json
   end
 
   post '/api/v1/awards/' do
     protected!
-    award_oid = awards.insert(JSON.parse(request.body.read.to_s))
+    award = JSON.parse(request.body.read.to_s)
+    award.merge!(created_at: Time.now)
+    award_oid = awards.insert(award)
     "{\"id\": \"#{award_oid.to_s}\"}"
   end
 

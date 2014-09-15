@@ -37,4 +37,3 @@ class App.Views.ZonkForm extends Backbone.View
       alert "Only Nataleigh can add zonks. Email zonks@joingrouper.com if you want to zonk someone"
     else
       alert "Something went wrong. Sorry!"
-
