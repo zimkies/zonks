@@ -10,9 +10,14 @@ class App.Views.ZonkForm extends Backbone.View
   initialize: ->
     @model = @zonkAward = new App.Models.ZonkAward
     @zonks = @collection
+    @listenTo @model, "invalid", @render
 
   toJSON: ->
-    _.extend(@model.toJSON(), zonks: @collection.toJSON())
+    _.extend(@model.toJSON(), {
+      zonks: @collection.toJSON()
+      validationError: @model.validationError
+      }
+    )
 
   render: ->
     @$el.html @template(@toJSON())
@@ -25,10 +30,10 @@ class App.Views.ZonkForm extends Backbone.View
 
   onSubmit: (e) =>
     e.preventDefault?()
-    @zonkAward.save(@serializeData()).fail(@onSubmitFail)
+    @zonkAward.save(@serializeData(), error: @onSubmitFail)
 
-  onSubmitFail: (xhr) =>
-    if xhr.status == '401'
+  onSubmitFail: (model, response, options) =>
+    if response.status == 401
       alert "Only Nataleigh can add zonks. Email zonks@joingrouper.com if you want to zonk someone"
     else
       alert "Something went wrong. Sorry!"
