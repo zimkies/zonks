@@ -30,6 +30,13 @@ class App < Sinatra::Base
     "{\"id\": \"#{award_oid.to_s}\"}"
   end
 
+  delete '/api/v1/awards/:id' do
+    # remove the item with id :id from the collection :thing, based on the bson
+    # representation of the object id
+    protected!
+    awards.remove('_id' => to_bson_id(params[:id]))
+  end
+
   get '/zonks*' do
     haml :index
   end
@@ -40,7 +47,7 @@ class App < Sinatra::Base
 
   # utilities for generating/converting MongoDB ObjectIds
   def to_bson_id(id)
-    BSON::ObjectId.fromstring(id)
+    BSON::ObjectId.from_string(id)
   end
 
   def from_bson_id(obj)
