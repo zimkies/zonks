@@ -25,7 +25,7 @@ class App.Views.AwardsPage extends Backbone.View
     @listenTo @zonkFormView.model, 'sync', @onZonkSaved
 
   onZonkSaved: (model) =>
-    @zonkAwards.add model
+    @zonkAwards.add model, at: 0
     @render()
 
   onZonksFetched: (collection) =>
