@@ -1,6 +1,6 @@
-class App.Views.AwardsPage extends Backbone.View
+class App.Views.AdminPage extends Backbone.View
 
-  template: JST['templates/awards_page']
+  template: JST['templates/admin_page']
 
   initialize: ->
     @zonkAwards = new App.Collections.ZonkAwards
@@ -10,8 +10,8 @@ class App.Views.AwardsPage extends Backbone.View
   render: ->
     @$el.html @template()
 
-    @zonksView = new App.Views.Awards.Zonks(
-      el: @$("#zonks"),
+    @zonkFormView = new App.Views.ZonkForm(
+      el: @$("#zonk_award_form"),
       collection: App.zonks
     )
     @zonkAwardsView =  new App.Views.ZonkAwards(
@@ -19,8 +19,14 @@ class App.Views.AwardsPage extends Backbone.View
       collection: @zonkAwards
     )
 
-    @zonksView.render()
+    @zonkFormView.render()
     @zonkAwardsView.render()
+
+    @listenTo @zonkFormView.model, 'sync', @onZonkSaved
+
+  onZonkSaved: (model) =>
+    @zonkAwards.add model, at: 0
+    @render()
 
   onZonksFetched: (collection) =>
     @render()
