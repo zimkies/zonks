@@ -41,6 +41,10 @@ class App < Sinatra::Base
     haml :index
   end
 
+  get '/' do
+    redirect '/zonks'
+  end
+
   def awards
     db.collection('awards')
   end
