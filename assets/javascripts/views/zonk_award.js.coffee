@@ -7,13 +7,19 @@ class App.Views.ZonkAward extends Backbone.View
   events:
     'click .destroy': "onClickDestroy"
 
-  initialize: ->
+  initialize: (options) ->
+    @editable = if options.editable? then options.editable else false
     @award = @model
     @zonks = App.zonks
 
   render: ->
-    @$el.html @template(@model.toParams())
+    @$el.html @template(@toParams())
     @
+
+  toParams: ->
+    $.extend(@model.toParams(),
+      editable: @editable
+    )
 
   onClickDestroy: (e) =>
     e.preventDefault?()

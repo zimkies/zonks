@@ -1,6 +1,7 @@
 class App.Views.ZonkAwards extends Backbone.View
 
-  initialize: ->
+  initialize: (options) ->
+    @editable = if options.editable? then options.editable else false
     @awards = @collection
     window.awards = @awards
     @listenTo @collection, 'sync', @onSync
@@ -9,6 +10,6 @@ class App.Views.ZonkAwards extends Backbone.View
   render: ->
     @$el.html("")
     @awards.map (zonk) =>
-      @$el.append new App.Views.ZonkAward(model: zonk).render().$el
+      @$el.append new App.Views.ZonkAward(model: zonk, editable: @editable).render().$el
 
   onSync: => @render()

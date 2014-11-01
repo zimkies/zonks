@@ -17,6 +17,7 @@ class App.Views.AwardsPage extends Backbone.View
     @zonkAwardsView =  new App.Views.ZonkAwards(
       el: @$("#zonk_awards")
       collection: @zonkAwards
+      editable: false
     )
 
     @zonksView.render()
